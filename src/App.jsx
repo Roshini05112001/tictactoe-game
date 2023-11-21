@@ -5,7 +5,7 @@ import { useState } from "react";
 import StatusMessage from './components/StatusMessage'
 import History from './components/History';
 
-
+const NEW_GAME = [{square:Array(9).fill(null) , isXnext : false}]
 
 function App() {
 
@@ -15,7 +15,7 @@ function App() {
   const gamingBoard = history[currentMove]
 
   
-  const winner = calculateWinner(gamingBoard.square)
+  const {winner,winningSquare} = calculateWinner(gamingBoard.square)
 
   
     const handleSquareClick = (clickedPosition) =>{
@@ -53,6 +53,12 @@ function App() {
         setCurrentMove(move)
     }
 
+    const onReset = ()=>{
+        setHistory(NEW_GAME)
+        setCurrentMove(0)
+
+    }
+
   
   
 
@@ -60,7 +66,8 @@ function App() {
     
       <div className='app'>  
        <StatusMessage  gamingBoard={gamingBoard} winner={winner} /> 
-        <Board  square={gamingBoard.square}  handleSquareClick={handleSquareClick}/> 
+        <Board  square={gamingBoard.square}  handleSquareClick={handleSquareClick} winningSquare={winningSquare}/> 
+        <button type='button' onClick={onReset} className={`btn-reset ${winner? 'active' : ''}`}>Reset</button>
         <h2>Current Game History</h2>
         <History history={history} moveTo={moveTo} currentMove={currentMove}/>
       </div>
