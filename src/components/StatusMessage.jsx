@@ -7,7 +7,7 @@ const StatusMessage = ({ winner,gamingBoard}) => {
         if (winner) {
             return (<div>Winner is {''}
             <span 
-               className={winner === 'X'? 'text-orange' : 'text-green'}>
+               className={winner === 'X'? 'text-green' : 'text-orange'}>
                 {winner}
             </span>
             </div>
@@ -24,7 +24,7 @@ const StatusMessage = ({ winner,gamingBoard}) => {
             return(
             <div>Next Player is {''}
              <span 
-               className={isXnext? 'text-orange' : 'text-green'}>
+               className={isXnext? 'text-green' : 'text-orange'}>
                 {nextPlayer}
             </span>
            </div>
